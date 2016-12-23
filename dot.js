@@ -10,25 +10,37 @@ function Dot() {
     a: 100,
   };
 
+
   this.render_dot = function() {
     noStroke();
     fill(this.color.r,this.color.g,this.color.b,this.color.a);
     ellipse(this.position.x,this.position.y,this.radius,this.radius);
   }
 
+
   this.check_edge = function() {
     if (this.position.x >= windowWidth){
       this.position.x = 0;
+      this.position.y = random(0,height);
     } else if (this.position.x <= 0) {
       this.position.x = windowWidth;
+      this.position.y = random(0,height);
     } else if (this.position.y >= windowHeight) {
       this.position.y = 0;
+      this.position.x = random(0,height);
     } else if (this.position.y <= 0) {
       this.position.y = windowHeight;
+      this.position.x = random(0,height);
     }
   }
 
+
   this.move_dot = function() {
     this.position.add(this.velocity);
+  }
+
+
+  this.avoid_mouse = function() {
+    var mousePos = createVector(mouseX, mouseY);
   }
 }
